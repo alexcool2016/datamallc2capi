@@ -1,0 +1,110 @@
+FORMAT: 1A
+HOST: http://datamallc2c.citictel.com/
+
+# DatamallC2C API Reference
+
+DatamallC2C provides some simple APIs for external Web/App requests 
+and internal BSS requests. 
+
+## Orders [/order/all]
+
+### Get All Existing Selling Orders [GET]
+
+To get all existing selling order list from server, below is the example return data with json format.
+
++ Response 200 (application/json)
+
+        {
+            [
+                {
+                    "OrderID":"111222",
+                    "SellUser":"Alex He",
+                    "DataType":"4G",
+                    "Vol(GB)":1,
+                    "Price":30,
+                    "EffDate":"2016-03-01",
+                    "ExpDate":"2016-03-15",
+                    "OrderDate":"2016-03-01 09:05:33"
+                },
+                {
+                    "OrderID":"111223",
+                    "SellUser":"Dennis Chan",
+                    "DataType":"4G",
+                    "Vol(GB)":3,
+                    "Price":85,
+                    "EffDate":"2016-03-08",
+                    "ExpDate":"2016-03-25",
+                    "OrderDate":"2016-03-01 19:25:34"
+                },
+                {
+                    "OrderID":"111224",
+                    "SellUser":"Diana Deng",
+                    "DataType":"4G",
+                    "Vol(GB)":2,
+                    "Price":58,
+                    "EffDate":"2016-03-09",
+                    "ExpDate":"2016-03-31",
+                    "OrderDate":"2016-03-08 14:33:23"
+                }
+            ]
+        }
+        
+### Put a Sell Order [POST]
+
+Put a sell order, body contain the order detail info. If the server accepted and processed successfully, will return the list of the selling orders. Below is the example of the json data of the new order.
+
++ Request (application/json)
+
+        {
+            "OrderID":"NEW",
+            "SellUser":"Diana Deng",
+            "DataType":"4G",
+            "Vol(GB)":2,
+            "Price":58,
+            "EffDate":"2016-03-09",
+            "ExpDate":"2016-03-31",
+            "OrderDate":"2016-03-08 14:33:23"            
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /order/sellorder
+
+    + Body
+
+            {
+                [
+                    {
+                        "OrderID":"111222",
+                        "SellUser":"Alex He",
+                        "DataType":"4G",
+                        "Vol(GB)":1,
+                        "Price":30,
+                        "EffDate":"2016-03-01",
+                        "ExpDate":"2016-03-15",
+                        "OrderDate":"2016-03-01 09:05:33"
+                    },
+                    {
+                        "OrderID":"111223",
+                        "SellUser":"Dennis Chan",
+                        "DataType":"4G",
+                        "Vol(GB)":3,
+                        "Price":85,
+                        "EffDate":"2016-03-08",
+                        "ExpDate":"2016-03-25",
+                        "OrderDate":"2016-03-01 19:25:34"
+                    },
+                    {
+                        "OrderID":"111224",
+                        "SellUser":"Diana Deng",
+                        "DataType":"4G",
+                        "Vol(GB)":2,
+                        "Price":58,
+                        "EffDate":"2016-03-09",
+                        "ExpDate":"2016-03-31",
+                        "OrderDate":"2016-03-08 14:33:23"
+                    }
+                ]
+            }
